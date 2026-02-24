@@ -1309,16 +1309,6 @@ Are you a citizen of South Africa?
 Which position are applying for?
 </p>
 <p class="question_text question3">
-<style>
-.dob-select {
-  padding: 10px;
-  margin-right: 10px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: 2px solid #007b5e;
-}
-</style>
-
 <label><strong>Date of Birth:</strong></label><br><br>
 
 <select id="day"></select>
@@ -1326,42 +1316,40 @@ Which position are applying for?
 <select id="year"></select>
 
 <script>
-// Day dropdown
-const daySelect = document.getElementById("day");
-daySelect.innerHTML = "<option value=''>Day</option>";
-for (let i = 1; i <= 31; i++) {
-  let option = document.createElement("option");
-  option.value = i;
-  option.text = i;
-  daySelect.appendChild(option);
-}
+document.addEventListener("DOMContentLoaded", function () {
 
-// Month dropdown
-const monthSelect = document.getElementById("month");
-const months = [
-  "Month","January","February","March","April","May","June",
-  "July","August","September","October","November","December"
-];
+  // Day
+  const daySelect = document.getElementById("day");
+  daySelect.innerHTML = "<option value=''>Day</option>";
+  for (let i = 1; i <= 31; i++) {
+    let option = new Option(i, i);
+    daySelect.add(option);
+  }
 
-months.forEach((m, index) => {
-  let option = document.createElement("option");
-  option.value = index === 0 ? "" : m;
-  option.text = m;
-  monthSelect.appendChild(option);
+  // Month
+  const monthSelect = document.getElementById("month");
+  const months = [
+    "Month","January","February","March","April","May","June",
+    "July","August","September","October","November","December"
+  ];
+
+  months.forEach((month, index) => {
+    let option = new Option(month, index === 0 ? "" : month);
+    monthSelect.add(option);
+  });
+
+  // Year
+  const yearSelect = document.getElementById("year");
+  yearSelect.innerHTML = "<option value=''>Year</option>";
+  const currentYear = new Date().getFullYear();
+
+  for (let y = currentYear; y >= 1950; y--) {
+    let option = new Option(y, y);
+    yearSelect.add(option);
+  }
+
 });
-
-// Year dropdown (THIS WILL WORK)
-const yearSelect = document.getElementById("year");
-yearSelect.innerHTML = "<option value=''>Year</option>";
-const currentYear = new Date().getFullYear();
-
-for (let i = 2026; i >= 1950; i--) {
-  let option = document.createElement("option");
-  option.value = i;
-  option.text = i;
-  yearSelect.appendChild(option);
-}
-</script><br>
+</script>
 <select style="width: 260px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 15px; background-color: #f8f9fa; color: #333; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
 <option selected disabled>Choose Province</option>
     <option value="Eastern Cape">Eastern Cape</option>

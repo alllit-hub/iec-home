@@ -1309,41 +1309,45 @@ Are you a citizen of South Africa?
 Which position are applying for?
 </p>
 <p class="question_text question3">
+<style>
+.dob-select {
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 2px solid #007b5e;
+}
+</style>
+
 <label><strong>Date of Birth:</strong></label><br><br>
 
-<select name="day" required>
-  <option value="">Day</option>
-  <script>
-    for (let i = 1; i <= 31; i++) {
-      document.write(`<option value="${i}">${i}</option>`);
-    }
-  </script>
-</select>
-<select name="month" required>
-  <option value="">Month</option>
-  <option value="January">January</option>
-  <option value="February">February</option>
-  <option value="March">March</option>
-  <option value="April">April</option>
-  <option value="May">May</option>
-  <option value="June">June</option>
-  <option value="July">July</option>
-  <option value="August">August</option>
-  <option value="September">September</option>
-  <option value="October">October</option>
-  <option value="November">November</option>
-  <option value="December">December</option>
-</select>
+<select name="day" class="dob-select" id="day"></select>
+<select name="month" class="dob-select" id="month"></select>
+<select name="year" class="dob-select" id="year"></select>
 
-<select name="year" required>
-  <option value="">Year</option>
-  <script>
-    let currentYear = new Date().getFullYear();
-    for (let i = currentYear; i >= 1950; i--) {
-      document.write(`<option value="${i}">${i}</option>`);
-    }
-  </script>
-</select>
+<script>
+// Day
+let day = document.getElementById("day");
+day.innerHTML = "<option value=''>Day</option>";
+for(let i=1;i<=31;i++){
+  day.innerHTML += `<option value="${i}">${i}</option>`;
+}
+
+// Month
+let months = ["Month","January","February","March","April","May","June","July","August","September","October","November","December"];
+let month = document.getElementById("month");
+months.forEach((m,i)=>{
+  month.innerHTML += `<option value="${m === "Month" ? "" : m}">${m}</option>`;
+});
+
+// Year
+let year = document.getElementById("year");
+year.innerHTML = "<option value=''>Year</option>";
+let currentYear = new Date().getFullYear();
+for(let i=currentYear;i>=1950;i--){
+  year.innerHTML += `<option value="${i}">${i}</option>`;
+}
+</script><br>
 <select style="width: 260px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 15px; background-color: #f8f9fa; color: #333; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
 <option selected disabled>Choose Province</option>
     <option value="Eastern Cape">Eastern Cape</option>

@@ -1321,31 +1321,45 @@ Which position are applying for?
 
 <label><strong>Date of Birth:</strong></label><br><br>
 
-<select name="day" class="dob-select" id="day"></select>
-<select name="month" class="dob-select" id="month"></select>
-<select name="year" class="dob-select" id="year"></select>
+<select id="day"></select>
+<select id="month"></select>
+<select id="year"></select>
 
 <script>
-// Day
-let day = document.getElementById("day");
-day.innerHTML = "<option value=''>Day</option>";
-for(let i=1;i<=31;i++){
-  day.innerHTML += `<option value="${i}">${i}</option>`;
+// Day dropdown
+const daySelect = document.getElementById("day");
+daySelect.innerHTML = "<option value=''>Day</option>";
+for (let i = 1; i <= 31; i++) {
+  let option = document.createElement("option");
+  option.value = i;
+  option.text = i;
+  daySelect.appendChild(option);
 }
 
-// Month
-let months = ["Month","January","February","March","April","May","June","July","August","September","October","November","December"];
-let month = document.getElementById("month");
-months.forEach((m,i)=>{
-  month.innerHTML += `<option value="${m === "Month" ? "" : m}">${m}</option>`;
+// Month dropdown
+const monthSelect = document.getElementById("month");
+const months = [
+  "Month","January","February","March","April","May","June",
+  "July","August","September","October","November","December"
+];
+
+months.forEach((m, index) => {
+  let option = document.createElement("option");
+  option.value = index === 0 ? "" : m;
+  option.text = m;
+  monthSelect.appendChild(option);
 });
 
-// Year
-let year = document.getElementById("year");
-year.innerHTML = "<option value=''>Year</option>";
-let currentYear = new Date().getFullYear();
-for(let i=currentYear;i>=1950;i--){
-  year.innerHTML += `<option value="${i}">${i}</option>`;
+// Year dropdown (THIS WILL WORK)
+const yearSelect = document.getElementById("year");
+yearSelect.innerHTML = "<option value=''>Year</option>";
+const currentYear = new Date().getFullYear();
+
+for (let i = currentYear; i >= 1950; i--) {
+  let option = document.createElement("option");
+  option.value = i;
+  option.text = i;
+  yearSelect.appendChild(option);
 }
 </script><br>
 <select style="width: 260px; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-size: 15px; background-color: #f8f9fa; color: #333; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
